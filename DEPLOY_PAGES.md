@@ -2,10 +2,12 @@
 
 ## 1) Enable GitHub Pages
 - Open repository settings: `Settings -> Pages`
-- Set `Source` to `GitHub Actions`
+- Set `Source` to `Deploy from a branch`
+- Branch: `main`
+- Folder: `/docs`
 
 ## 2) Configure backend API URL
-- Edit `public/config.js`
+- Edit `docs/config.js`
 - Set `API_BASE_URL` to your backend address, for example:
 
 ```js
@@ -16,7 +18,7 @@ window.APP_CONFIG = {
 
 ## 3) Push changes
 - Push to `main` branch
-- GitHub Actions will deploy `public/` to Pages automatically
+- GitHub Pages will publish from `main/docs`
 
 ## 4) Access link
 - Your page URL format:
