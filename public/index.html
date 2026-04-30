@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>记账本</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>记账 Web（Excel 可选导入导出）</h1>
+
+      <section class="card">
+        <h2>新增记录</h2>
+        <form id="record-form">
+          <div class="row">
+            <label for="date">日期</label>
+            <input type="date" id="date" required />
+          </div>
+          <div class="row">
+            <label for="type">类型</label>
+            <select id="type" required>
+              <option value="支出">支出</option>
+              <option value="收入">收入</option>
+            </select>
+          </div>
+          <div class="row">
+            <label for="category">分类</label>
+            <input type="text" id="category" placeholder="如：餐饮/工资" required />
+          </div>
+          <div class="row">
+            <label for="amount">金额</label>
+            <input type="number" id="amount" step="0.01" min="0" required />
+          </div>
+          <div class="row">
+            <label for="note">备注</label>
+            <input type="text" id="note" placeholder="可选" />
+          </div>
+          <button type="submit">保存</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>账单列表</h2>
+        <div class="excel-actions">
+          <button id="select-excel-btn" type="button">选择 Excel 文件</button>
+          <input id="excel-file" type="file" accept=".xlsx,.xls" />
+          <button id="load-excel-btn" type="button">Load Excel</button>
+          <button id="save-excel-btn" type="button">Save Excel</button>
+          <span id="excel-file-name" class="file-name">未选择文件</span>
+        </div>
+        <div id="save-hint" class="save-hint"></div>
+        <div class="summary">
+          <span id="income-total">收入：0</span>
+          <span id="expense-total">支出：0</span>
+          <span id="balance-total">结余：0</span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>日期</th>
+              <th>类型</th>
+              <th>分类</th>
+              <th>金额</th>
+              <th>备注</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody id="records-body"></tbody>
+        </table>
+      </section>
+
+      <section class="card">
+        <h2>按月统计</h2>
+        <div id="monthly-stats" class="stats-list"></div>
+      </section>
+
+      <section class="card">
+        <h2>分类支出统计</h2>
+        <div id="category-stats" class="stats-list"></div>
+      </section>
+    </main>
+    <script src="./app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,140 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f5f7fb;
+  color: #1f2937;
+}
+
+.container {
+  max-width: 960px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+h1 {
+  margin-bottom: 16px;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+input,
+select,
+button {
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+}
+
+button {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.92;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 10px 8px;
+  text-align: left;
+}
+
+.summary {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.excel-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.excel-actions input[type="file"] {
+  border: none;
+  padding: 0;
+}
+
+.file-name {
+  color: #4b5563;
+  font-size: 14px;
+}
+
+.save-hint {
+  margin-bottom: 12px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.stats-list {
+  display: grid;
+  gap: 10px;
+}
+
+.stat-item {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.stat-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.bar-row {
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.bar-income {
+  height: 100%;
+  background: #16a34a;
+}
+
+.bar-expense {
+  height: 100%;
+  background: #dc2626;
+}
+
+.stat-meta {
+  font-size: 13px;
+  color: #374151;
+}
+
+.delete-btn {
+  background: #dc2626;
+}
