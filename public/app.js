@@ -12,15 +12,21 @@ const saveHintEl = document.getElementById("save-hint");
 const monthlyStatsEl = document.getElementById("monthly-stats");
 const categoryStatsEl = document.getElementById("category-stats");
 let selectedExcelHandle = null;
+const API_BASE_URL = String(window.APP_CONFIG?.API_BASE_URL || "").replace(/\/$/, "");
+
+function apiUrl(path) {
+  if (!API_BASE_URL) return path;
+  return `${API_BASE_URL}${path}`;
+}
 
 async function fetchRecords() {
-  const res = await fetch("/api/records");
+  const res = await fetch(apiUrl("/api/records"));
   if (!res.ok) throw new Error("获取记录失败");
   return res.json();
 }
 
 async function createRecord(payload) {
-  const res = await fetch("/api/records", {
+  const res = await fetch(apiUrl("/api/records"), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload)
@@ -33,7 +39,7 @@ async function createRecord(payload) {
 }
 
 async function deleteRecord(id) {
-  const res = await fetch(`/api/records/${id}`, { method: "DELETE" });
+  const res = await fetch(apiUrl(`/api/records/${id}`), { method: "DELETE" });
   if (!res.ok) {
     const err = await res.json();
     throw new Error(err.message || "删除失败");
@@ -41,7 +47,7 @@ async function deleteRecord(id) {
 }
 
 async function loadExcel(base64) {
-  const res = await fetch("/api/load-excel", {
+  const res = await fetch(apiUrl("/api/load-excel"), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ base64 })
@@ -54,7 +60,7 @@ async function loadExcel(base64) {
 }
 
 async function saveExcel() {
-  const res = await fetch("/api/save-excel");
+  const res = await fetch(apiUrl("/api/save-excel"));
   if (!res.ok) {
     const err = await res.json();
     throw new Error(err.message || "Excel 导出失败");
@@ -84,11 +90,12 @@ function supportsFileSystemAccess() {
 }
 
 function setSaveHint() {
+  const backendLabel = API_BASE_URL || "当前站点同域 API";
   if (supportsFileSystemAccess()) {
-    saveHintEl.textContent = "提示：选中文件后可直接写回该 Excel。";
+    saveHintEl.textContent = `提示：选中文件后可直接写回该 Excel。后端：${backendLabel}`;
   } else {
     saveHintEl.textContent =
-      "提示：当前浏览器不支持直接写回文件，Save Excel 将下载文件。";
+      `提示：当前浏览器不支持直接写回文件，Save Excel 将下载文件。后端：${backendLabel}`;
   }
 }
 
